@@ -31,4 +31,5 @@ An authentication system linked to lots of other programs that I have written
 
 ### Requirments 
 Python 3.X (written in 3.6) with standered python libary
+
 __OPTIONAL__ [pygame](http://pygame.org/) to run some of the games
