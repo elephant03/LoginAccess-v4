@@ -1,0 +1,18 @@
+{
+    "Defults": {
+        "Colours": {
+            "Background": "#7eccf7",
+            "Foreground": "Black",
+            "Btn_Background": "#2db4ff",
+            "Btn_Active": "#2da9ff",
+            "QuitBtn_Background": "#ef2804",
+            "QuitBtn_Active": "#f52804",
+            "PositiveBtn_Background": "#1ece18",
+            "PositiveBtn_Active": "#159b11",
+            "FontType": "Arial",
+            "FontSize": 14,
+            "TitleFontSize": 24,
+            "SubTitleFontSize": 18
+        }
+    }
+}
