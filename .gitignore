@@ -4,3 +4,4 @@ __pycache__
 .vscode
 myDatabase.db
 test.py
+Tests
