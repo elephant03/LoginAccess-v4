@@ -1,6 +1,20 @@
-def Hash(Text):
+from argon2 import PasswordHasher, exceptions
+import hashlib as h
+import sys
+
+
+def Hash(Text, Secure=True):
     User_String = str(Text)
-    Hash = pwd_context.hash(User_String)
+
+    if not Secure:
+        System_Encoding = sys.getfilesystemencoding()
+        m = h.sha256()
+        m.update(bytes(str(String), encoding=System_Encoding))
+        Hash = m.digest()
+        pass
+    else:
+        ph = PasswordHasher()
+        Hash = ph.hash(User_String)
 
     return Hash
 
@@ -8,14 +22,19 @@ def Hash(Text):
 def Verify(Text, Given_Hash):
     User_String = str(Text)
     User_Hash = str(Given_Hash)
-    Verify = pwd_context.verify(User_String, User_Hash)
 
-    return Verify
+    ph = PasswordHasher()
+
+    try:
+        _Verify = ph.verify(User_Hash, User_String)
+        Pass = True
+    except exceptions.VerifyMismatchError:
+        Pass = False
+
+    return Pass
 
 
 if __name__ == "__main__":
-    from Context import pwd_context
-
     while True:
         Go = str(input("HASH VERIFY OR QUIT\n")).lower()
         if Go == "quit":
@@ -33,6 +52,3 @@ if __name__ == "__main__":
 
         else:
             pass
-
-else:
-    from Libary.Utility.Security.Context import pwd_context
