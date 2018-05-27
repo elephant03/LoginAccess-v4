@@ -106,11 +106,228 @@ class Basics:
         self.TitleFont = self.Defults["TitleFont"]
         self.SubTitleFont = self.Defults["SubTitleFont"]
 
+    '''
+    The core of the program to simplify standered tkinter settings
+    '''
+
+    def AddFrame(self, Frame, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Creates a Frame for building the GUI on to
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+        '''
+        # Creats the frame object
+        Frame = TK.Frame(Frame, bg=self.Background)
+
+        # Packs the Frame into the given master
+        if Pack:
+            Frame.pack(fill=TK.BOTH, expand=True)
+        # Puts the frame into the grid
+        else:
+            Frame.grid(row=Row, column=Column,
+                       sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return Frame
+
+    def AddLabel(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Creates a Label for dispalaying text
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+        '''
+        # Creats the Label object
+        Label = TK.Label(Frame, bg=self.Background,
+                         fg=self.Foreground, font=self.Font, text=Text)
+
+        # Packs the Label into the given master
+        if Pack:
+            Label.pack(fill=TK.BOTH, expand=True)
+        # Puts the Label into the grid
+        else:
+            Label.grid(row=Row, column=Column,
+                       sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return Label
+
+    def AddLabel_spacer(self, Frame, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Creates a Label for GUI spacing
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+        '''
+        # Creats the Label object
+        Space_Label = TK.Label(Frame, bg=self.Background,
+                               fg=self.Foreground, font=self.Font)
+
+        # Packs the Label into the given master
+        if Pack:
+            Space_Label.pack(fill=TK.BOTH, expand=True)
+        # Puts the Label into the grid
+        else:
+            Space_Label.grid(row=Row, column=Column,
+                             sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return Space_Label
+
+    def AddLabel_title(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Creates a Label for dispalaying titles
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+        '''
+        # Creats the Label object
+        Title_Label = TK.Label(Frame, bg=self.Background,
+                               fg=self.Foreground, font=self.TitleFont, text=Text)
+
+        # Packs the Label into the given master
+        if Pack:
+            Title_Label.pack(fill=TK.BOTH, expand=True)
+        # Puts the Label into the grid
+        else:
+            Title_Label.grid(row=Row, column=Column,
+                             sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return Title_Label
+
+    def AddLabel_subtitle(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Creates a Label for dispalaying sub titles
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+        '''
+        # Creats the Label object
+        SubTitle_Label = TK.Label(Frame, bg=self.Background,
+                                  fg=self.Foreground, font=self.SubTitleFont, text=Text)
+
+        # Packs the Label into the given master
+        if Pack:
+            SubTitle_Label.pack(fill=TK.BOTH, expand=True)
+        # Puts the Label into the grid
+        else:
+            SubTitle_Label.grid(row=Row, column=Column,
+                                sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return SubTitle_Label
+
+    def AddButton(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Adds a simple button to the Given frame
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+
+        **You must add your own command using the .config method**
+        '''
+        Button = TK.Button(Frame, bg=self.Btn_Background, activebackground=self.Btn_Active,
+                           foreground=self.Foreground, font=self.Font, text=Text)
+
+        # Packs the Label into the given master
+        if Pack:
+            Button.pack(fill=TK.BOTH, expand=True)
+        # Puts the Label into the grid
+        else:
+            Button.grid(row=Row, column=Column,
+                        sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return Button
+
+    def AddButton_negetive(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Adds a simple button to the Given frame
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+
+        **You must add your own command using the .config method**
+        **this only changes colours not functionality**
+        '''
+        Button_negetive = TK.Button(Frame, bg=self.Btn_Background, activebackground=self.Btn_Active,
+                                    foreground=self.Foreground, font=self.Font, text=Text)
+
+        # Packs the Label into the given master
+        if Pack:
+            Button_negetive.pack(fill=TK.BOTH, expand=True)
+        # Puts the Label into the grid
+        else:
+            Button_negetive.grid(row=Row, column=Column,
+                                 sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return Button_negetive
+
+    def AddButton_possitive(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Adds a simple button to the Given frame
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+
+        **You must add your own command using the .config method**
+        **this only changes colours not functionality of a normal button**
+        '''
+        Button_possitive = TK.Button(Frame, bg=self.Btn_Background, activebackground=self.Btn_Active,
+                                     foreground=self.Foreground, font=self.Font, text=Text)
+
+        # Packs the Label into the given master
+        if Pack:
+            Button_possitive.pack(fill=TK.BOTH, expand=True)
+        # Puts the Label into the grid
+        else:
+            Button_possitive.grid(row=Row, column=Column,
+                                  sticky="nsew", columnspan=CSpan, rowspan=RSpan, padx=2, pady=2)
+
+        return Button_possitive
+
+    def AddEntry(self, Frame, Focus=False, Show="", Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+        '''
+        Creates an Entry object which lets the user enter text
+        If pack is true then it will pack it into the given frame
+        Row, Column etc. are not needed if packing is True
+        '''
+        Entry = TK.Entry(
+            Frame, font=self.Font, foreground=self.Foreground)
+
+        # If something else is ment to display not letters this will change
+        if Show:
+            Entry.config(show=Show)
+
+        # Packs the Entry into the given master frame
+        if Pack:
+            Entry.pack(fill=TK.BOTH, expand=True)
+
+        # Putes the entry into the grid
+        else:
+            Entry.grid(row=Row, column=Column, sticky="nsew",
+                       padx=2, pady=2, columnspan=CSpan)
+
+        # Focuses the users mouse onto the entry so they can just start typing
+        if Focus:
+            Entry.focus()
+
+        return Entry
+
+    # A method used in production to call when a feature isn't finished yet
+    def WorkInProgress(self):
+        self.WIP_tl = TK.Toplevel(bg=self.Background)
+        self.WIP_lbl = TK.Label(self.WIP_tl, font=self.Font, foreground=self.Foreground, bg=self.Background,
+                                text="This feature is currently a work in progress, we appologise fore any inconvinience")
+        self.WIP_lbl.grid(row=0, column=0, sticky="nsew")
+
+        self.Align_Grid(self.WIP_tl)
+
+    def Align_Grid(self, Frame):
+        '''
+        Allows the grids to expand as their frame dose
+        '''
+        # Gets the nuber of rows and columns of the grid
+        self.Grid_Size = Frame.grid_size()
+
+        # Loops through every column
+        for i in range(self.Grid_Size[0]):
+            # Sets the weight to a non zero value so it can expand
+            Frame.columnconfigure(i, weight=1)
+        # Loops through every row
+        for i in range(self.Grid_Size[1]):
+            # Sets the weight to a non zero value so it can expand
+            Frame.rowconfigure(i, weight=1)
+
 
 # This is purely for debugging perpouses- this file is never ment to run from inside itself
 if __name__ == "__main__":
-    Test = Basics("Ambrose")
-
-    print(Test.Background)
-    print(Test.Font)
-    print(Test.TitleFont)
+    pass
