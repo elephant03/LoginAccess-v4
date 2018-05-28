@@ -30,7 +30,7 @@ class Basics:
             "SubTitleFont": (Colour_data["FontType"], Colour_data["SubTitleFontSize"], "bold"),
         }
 
-    def __init__(self, Username):
+    def __init__(self, Username=None):
         '''
         Sets up the players colour varables based off what is stored in the database
         Set username to none to use the defults
@@ -110,7 +110,7 @@ class Basics:
     The core of the program to simplify standered tkinter settings
     '''
 
-    def AddFrame(self, Frame, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddFrame(self, Frame, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Creates a Frame for building the GUI on to
         If pack is true then it will pack it into the given frame
@@ -129,7 +129,7 @@ class Basics:
 
         return Frame
 
-    def AddLabel(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddLabel(self, Frame, Text, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Creates a Label for dispalaying text
         If pack is true then it will pack it into the given frame
@@ -149,7 +149,7 @@ class Basics:
 
         return Label
 
-    def AddLabel_spacer(self, Frame, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddLabel_spacer(self, Frame, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Creates a Label for GUI spacing
         If pack is true then it will pack it into the given frame
@@ -169,7 +169,7 @@ class Basics:
 
         return Space_Label
 
-    def AddLabel_title(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddLabel_title(self, Frame, Text, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Creates a Label for dispalaying titles
         If pack is true then it will pack it into the given frame
@@ -189,7 +189,7 @@ class Basics:
 
         return Title_Label
 
-    def AddLabel_subtitle(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddLabel_subtitle(self, Frame, Text, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Creates a Label for dispalaying sub titles
         If pack is true then it will pack it into the given frame
@@ -209,7 +209,7 @@ class Basics:
 
         return SubTitle_Label
 
-    def AddButton(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddButton(self, Frame, Text, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Adds a simple button to the Given frame
         If pack is true then it will pack it into the given frame
@@ -230,7 +230,7 @@ class Basics:
 
         return Button
 
-    def AddButton_negetive(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddButton_negetive(self, Frame, Text, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Adds a simple button to the Given frame
         If pack is true then it will pack it into the given frame
@@ -239,7 +239,7 @@ class Basics:
         **You must add your own command using the .config method**
         **this only changes colours not functionality**
         '''
-        Button_negetive = TK.Button(Frame, bg=self.Btn_Background, activebackground=self.Btn_Active,
+        Button_negetive = TK.Button(Frame, bg=self.QuitBtn_Background, activebackground=self.QuitBtn_Active,
                                     foreground=self.Foreground, font=self.Font, text=Text)
 
         # Packs the Label into the given master
@@ -252,7 +252,7 @@ class Basics:
 
         return Button_negetive
 
-    def AddButton_possitive(self, Frame, Text, Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddButton_possitive(self, Frame, Text, Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Adds a simple button to the Given frame
         If pack is true then it will pack it into the given frame
@@ -261,7 +261,7 @@ class Basics:
         **You must add your own command using the .config method**
         **this only changes colours not functionality of a normal button**
         '''
-        Button_possitive = TK.Button(Frame, bg=self.Btn_Background, activebackground=self.Btn_Active,
+        Button_possitive = TK.Button(Frame, bg=self.PositiveBtn_Background, activebackground=self.PositiveBtn_Active,
                                      foreground=self.Foreground, font=self.Font, text=Text)
 
         # Packs the Label into the given master
@@ -274,7 +274,7 @@ class Basics:
 
         return Button_possitive
 
-    def AddEntry(self, Frame, Focus=False, Show="", Pack=True, Row=None, Column=None, CSpan=1, RSpan=1):
+    def AddEntry(self, Frame, Focus=False, Show="", Pack=False, Row=None, Column=None, CSpan=1, RSpan=1):
         '''
         Creates an Entry object which lets the user enter text
         If pack is true then it will pack it into the given frame
