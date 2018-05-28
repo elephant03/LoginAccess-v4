@@ -18,8 +18,6 @@ import sqlite3 as lite
 from Libary.Menus import MainMenu
 # Imports the help screen to expalain what to do
 from Libary.Menus import HelpMenus
-# Imports the resent password screen displayer
-from Libary.Menus import PasswordReset
 # Imports the new account screen displayer
 from Libary.Menus import NewAccount
 
@@ -61,7 +59,8 @@ class Main():
         '''
 
         # Creats the Login_fr on top of the main_fr
-        self.Login_fr = self.tb.AddFrame(self.Main_fr, Pack=True)
+        self.Login_fr = self.tb.AddFrame(self.Main_fr, Row=0, Column=0)
+        self.Login_fr.grid(row=0, column=0, sticky="nsew", padx=0, pady=0)
 
         # Creates a simple title label
         self.Title_lbl = self.tb.AddLabel_title(
@@ -115,10 +114,13 @@ class Main():
         self.Password_ent.bind("<Return>", lambda e: self.Login_command())
         self.Login_fr.bind("<Return>", lambda e: self.Login_command())
 
+        self.tb.Align_Grid(self.Login_fr)
+        self.tb.Align_Grid(self.Main_fr)
+
         return
 
     def Login_Help(self):
-        self.tb.WorkInProgress()
+        HelpMenus.Login_Help(self.Main_fr)
 
         return
 
