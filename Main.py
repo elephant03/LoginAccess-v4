@@ -157,6 +157,7 @@ class Main():
         '''
         Loads the account creation screen
         '''
+        NewAccount.NewAccount(self.Main_fr)
         self.tb.WorkInProgress()
 
         return
