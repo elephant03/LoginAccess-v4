@@ -9,7 +9,7 @@ def Hash(Text, Secure=True):
     if not Secure:
         System_Encoding = sys.getfilesystemencoding()
         m = h.sha256()
-        m.update(bytes(str(String), encoding=System_Encoding))
+        m.update(bytes(str(User_String), encoding=System_Encoding))
         Hash = m.digest()
         pass
     else:
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         elif Go == "hash":
             String = str(input("Please enter your string to hash: "))
 
-            print(Hash(String))
+            print(Hash(String, Secure=True))
 
         elif Go == "verify":
             Hash = str(input("Please enter the hash: "))

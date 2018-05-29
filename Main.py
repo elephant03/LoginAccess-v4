@@ -20,6 +20,8 @@ from Libary.Menus import MainMenu
 from Libary.Menus import HelpMenus
 # Imports the new account screen displayer
 from Libary.Menus import NewAccount
+# Imports to validate the users logins
+from Libary.Utility import LoginChecks as LC
 
 
 class Main():
@@ -120,16 +122,41 @@ class Main():
         return
 
     def Login_Help(self):
+        '''
+        Calls the help screen
+        '''
         HelpMenus.Login_Help(self.Main_fr)
 
         return
 
     def Login_command(self):
-        self.tb.WorkInProgress()
+        '''
+        Checks the users login details and logs them in if they are correct
+        '''
+
+        # Will return true if the users login is correct and false otherwise
+        self.Passed = LC.Check(self.Username_ent, self.Password_ent)
+
+        # Clears all of the users inputs
+        self.Username_ent.delete(0, "end")
+        self.Password_ent.delete(0, "end")
+
+        # Refocuses the mouse onto the Username
+        self.Username_ent.focus()
+
+        if self.Passed:
+            self.Space_lbl.config(text="")
+            MainMenu.LoginMenu()
+            return
+
+        self.Space_lbl.config(text="Sorry, login failed")
 
         return
 
     def NewAccount_command(self):
+        '''
+        Loads the account creation screen
+        '''
         self.tb.WorkInProgress()
 
         return
