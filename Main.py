@@ -149,18 +149,24 @@ class Main():
         # Will return true if the users login is correct and false otherwise
         self.Passed = LC.Check(self.Username_ent, self.Password_ent)
 
-        # Clears all of the users inputs
+        if self.Passed:
+            self.Space_lbl.config(text="")
+            MainMenu.LoginMenu(
+                str(h.Hash(self.Username_ent.get(), Secure=False)))
+            # Clears all of the users inputs
+            self.Username_ent.delete(0, "end")
+            self.Password_ent.delete(0, "end")
+
+            # Refocuses the mouse onto the Username
+            self.Username_ent.focus()
+            return
+
+            # Clears all of the users inputs
         self.Username_ent.delete(0, "end")
         self.Password_ent.delete(0, "end")
 
         # Refocuses the mouse onto the Username
         self.Username_ent.focus()
-
-        if self.Passed:
-            self.Space_lbl.config(text="")
-            MainMenu.LoginMenu(
-                str(h.Hash(self.Username_ent.get(), Secure=False)))
-            return
 
         self.Space_lbl.config(text="Sorry, login failed")
 
