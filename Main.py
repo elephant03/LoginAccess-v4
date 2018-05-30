@@ -22,6 +22,8 @@ from Libary.Menus import HelpMenus
 from Libary.Menus import NewAccount
 # Imports to validate the users logins
 from Libary.Utility import LoginChecks as LC
+# Imports hashing libary
+from Libary.Utility.Security import Hash as h
 
 
 class Main():
@@ -156,7 +158,8 @@ class Main():
 
         if self.Passed:
             self.Space_lbl.config(text="")
-            MainMenu.LoginMenu()
+            MainMenu.LoginMenu(
+                str(h.Hash(self.Username_ent.get(), Secure=False)))
             return
 
         self.Space_lbl.config(text="Sorry, login failed")
