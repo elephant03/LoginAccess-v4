@@ -14,5 +14,10 @@
             "TitleFontSize": 24,
             "SubTitleFontSize": 18
         }
+    },
+    "Email": {
+        "Enabled": false,
+        "Address": "",
+        "Password": ""
     }
 }

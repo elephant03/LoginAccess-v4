@@ -36,6 +36,16 @@ class Main():
         Then calls the Login screen GUI
         '''
 
+        # Sets up the database
+        with lite.connect("myDatabase.db") as self.Con:
+            self.Cur = self.Con.cursor()
+            self.Cur.execute("""
+            CREATE TABLE IF NOT EXISTS Users (
+            Username TEXT NOT NULL PRIMARY KEY,
+            Password TEXT NOT NULL,
+            AccountType INTEGER NOT NULL,
+            Email INTEGER);""")
+
         # Creats an instance of the tkinter_basics class
         self.tb = tkinter_basics.Basics()
 
@@ -157,8 +167,7 @@ class Main():
         '''
         Loads the account creation screen
         '''
-        NewAccount.NewAccount(self.Main_fr)
-        self.tb.WorkInProgress()
+        NewAccount.NewAccount(self.Main_fr, self.Space_lbl, self.Username_ent)
 
         return
 
