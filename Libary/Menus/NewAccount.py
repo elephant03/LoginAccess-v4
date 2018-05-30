@@ -137,6 +137,13 @@ class NewAccount:
             self.Cur.execute("INSERT INTO Users (Username, Password, AccountType) VALUES(?, ?, ?)", (str(h.Hash(
                 self.Username_ent.get(), Secure=False)), str(h.Hash(self.Password_ent.get())), str(h.Hash("standered", Secure=False))))
 
+            self.Cur.execute("SELECT * FROM Users")
+
+            if len(self.Cur.fetchall()) == 1:
+                self.Cur.execute("UPDATE Users SET AccountType = ? WHERE Username = ?", (
+                    str(h.Hash("owner", Secure=False)),
+                    str(h.Hash(self.Username_ent.get(), Secure=False))))
+
         self.NewAccount_fr.destroy()
         self.LoginSpacer.config(text="Account created")
 
