@@ -31,14 +31,14 @@ class Reset:
             self.ResetPassword_fr, "Password Reset", Row=0, Column=0, CSpan=2)
 
         self.Space_lbl = self.tb.AddLabel_spacer(
-            self.ResetPassword_fr, Row=2, Column=0, CSpan=2)
+            self.ResetPassword_fr, Row=1, Column=0, CSpan=2)
 
         self.Back_btn = self.tb.AddButton(
-            self.ResetPassword_fr, "Back", Row=3, Column=0)
+            self.ResetPassword_fr, "Back", Row=2, Column=0)
         self.Back_btn.config(command=lambda: self.ResetPassword_fr.destroy())
 
         self.Reset_btn = self.tb.AddButton(
-            self.ResetPassword_fr, "Reset Password", Row=3, Column=1)
+            self.ResetPassword_fr, "Reset Password", Row=2, Column=1)
         self.Reset_btn.config(command=lambda: self.Reset())
 
         self.tb.WorkInProgress()

@@ -151,8 +151,8 @@ class Main():
 
         if self.Passed:
             self.Space_lbl.config(text="")
-            MainMenu.LoginMenu(
-                str(h.Hash(self.Username_ent.get(), Secure=False)))
+            MainMenu.LoginMenu(self.Main_fr,
+                               str(h.Hash(self.Username_ent.get(), Secure=False)))
             # Clears all of the users inputs
             self.Username_ent.delete(0, "end")
             self.Password_ent.delete(0, "end")

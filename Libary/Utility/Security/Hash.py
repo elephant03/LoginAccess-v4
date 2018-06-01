@@ -35,6 +35,7 @@ def Verify(Text, Given_Hash):
 
 
 if __name__ == "__main__":
+    '''
     while True:
         Go = str(input("HASH VERIFY OR QUIT\n")).lower()
         if Go == "quit":
@@ -52,3 +53,5 @@ if __name__ == "__main__":
 
         else:
             pass
+    '''
+    print(str(Hash("student", Secure=False)))
