@@ -11,6 +11,8 @@ from Libary.Utility import tkinter_basics
 import sqlite3 as lite
 # Imports encyription system
 from Libary.Utility.Security import Hash as h
+# Imports the help screen
+from Libary.Menus.HelpMenus import MainMenu_Help as Menu_help
 
 
 class LoginMenu:
@@ -119,7 +121,7 @@ class LoginMenu:
         self.tb.Align_Grid(self.Main_fr)
 
     def Help(self):
-        self.tb.WorkInProgress()
+        Menu_help(self.Main_fr)
         return
 
     def Options(self):

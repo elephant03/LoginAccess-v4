@@ -61,3 +61,48 @@ class Login_Help:
         self.tb.Align_Grid(self.LoginHelp_fr)
 
         return
+
+
+class MainMenu_Help:
+    '''
+    Displays a help screen for the menu that you see when you login
+    '''
+
+    def __init__(self, Main_fr):
+        '''
+        Brings up the help screen for using the menu system
+        '''
+
+        self.tb = tkinter_basics.Basics()
+
+        self.Main_fr = Main_fr
+
+        self.MainMenuHelp_fr = self.tb.AddFrame(self.Main_fr, Row=0, Column=0)
+        self.MainMenuHelp_fr.grid(
+            row=0, column=0, sticky="nsew", padx=0, pady=0)
+
+        self.Title_lbl = self.tb.AddLabel_title(
+            self.MainMenuHelp_fr, "Menu Help", Row=0, Column=0, CSpan=2)
+
+        self.Space_lbl = self.tb.AddLabel_spacer(
+            self.MainMenuHelp_fr, Row=2, Column=0, CSpan=2)
+
+        self.Instructions = [
+            "This is the main menu",
+            "It allows you to access the functionality of the program",
+            "To use it please click on one of the available sub-menus",
+            "If you need more help please read the wiki",
+            "Or contact an admin"
+        ]
+
+        for Line in self.Instructions:
+            self.Line = self.tb.AddLabel(
+                self.MainMenuHelp_fr, Line, Row=self.Instructions.index(Line)+3, Column=0)
+
+        self.Back_btn = self.tb.AddButton(
+            self.MainMenuHelp_fr, "Back", Row=len(self.Instructions)+3, Column=0)
+        self.Back_btn.config(command=lambda: self.MainMenuHelp_fr.destroy())
+
+        self.tb.Align_Grid(self.MainMenuHelp_fr)
+
+        return
