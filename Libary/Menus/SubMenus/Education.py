@@ -3,6 +3,7 @@ Shows the different revison tools that studient account have access to
 These features and the most resent and so will be the most buggy and need the most work
 '''
 
+from Libary.Utility import tkinter_basics
 
 class Education:
     '''

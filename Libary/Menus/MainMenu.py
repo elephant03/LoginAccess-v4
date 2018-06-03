@@ -68,7 +68,27 @@ class LoginMenu:
         self.tb = tkinter_basics.Basics(Username=self.Username)
 
         if self.Warnings_num >= 3:
-            print("Account deactivated")
+            self.Menu_fr = self.tb.AddFrame(self.Main_fr, Row=0, Column=0)
+            self.Menu_fr.grid(row=0, column=0, sticky="nsew", padx=0, pady=0)
+
+            self.Title_lbl = self.tb.AddLabel_title(
+                self.Menu_fr, "Account Deleted:", Row=0, Column=0)
+
+            self.Instructions = [
+                "We are sorry but your account has now got 3 warnings",
+                "Your account will now be deleted- you cannot appeal this action",
+                "Only the individual warnings could have been reveiwed",
+                "However, you didn't do this and so you account will be erased"
+            ]
+
+            for Line in self.Instructions:
+                self.Line = self.tb.AddLabel(
+                    self.Menu_fr, Line, Row=self.Instructions.index(Line)+3, Column=0)
+
+            self.Continue_btn = self.tb.AddButton(
+                self.Menu_fr, "I acknowledge this", Column=0, Row=len(self.Instructions)+4)
+            self.Continue_btn.config(command=lambda: self.DeleteAccount())
+
             return
 
         self.Menu_fr = self.tb.AddFrame(self.Main_fr, Row=0, Column=0)
@@ -152,7 +172,8 @@ class LoginMenu:
         return
 
     def Options(self):
-        self.tb.WorkInProgress()
+        from Libary.Menus.SubMenus import Options
+        Options.Options(self.Main_fr, self.Username)
         return
 
     def Tools_menu(self):
@@ -166,17 +187,35 @@ class LoginMenu:
         return
 
     def Admin_menu(self):
-        self.tb.WorkInProgress()
+        from Libary.Menus.SubMenus import Admin
+        Admin.Admin_menu(self.Main_fr, self.Username)
         return
 
     def Owner_menu(self):
-        self.tb.WorkInProgress()
+        from Libary.Menus.SubMenus import Owner
+        Owner.Owner(self.Main_fr, self.Username)
         return
 
     def Education_menu(self):
-        self.tb.WorkInProgress()
+        from Libary.Menus.SubMenus import Education
+        Education.Education(self.Main_fr, self.Username)
         return
 
     def Teacher_menu(self):
-        self.tb.WorkInProgress()
+        from Libary.Menus.SubMenus import Teacher
+        Teacher.Teacher(self.Main_fr, self.Username)
+        return
+
+    def DeleteAccount(self):
+        '''
+        Removes the users account from the database
+        '''
+        with lite.connect("myDatabase.db") as self.Con:
+            self.Cur = self.Con.cursor()
+
+            self.Cur.execute(
+                "DELETE FROM Users WHERE Username = ?", (self.Username,))
+
+        self.Main_fr.destroy()
+
         return

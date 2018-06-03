@@ -9,7 +9,7 @@ import tkinter as TK
 from Libary.Utility import tkinter_basics
 
 
-class Techer:
+class Teacher:
     '''
     Sotres the methods for the techer menu system and the key varbales
     '''
