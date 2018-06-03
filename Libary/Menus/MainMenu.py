@@ -47,7 +47,29 @@ class LoginMenu:
 
             self.AccountType = self.Cur.fetchall()[0][0]
 
+            self.Cur.execute("""CREATE TABLE IF NOT EXISTS Warnings (
+                Username TEXT NOT NULL,
+                Issued_by TEXT NOT NULL,
+                Issued_for TEXT NOT NULL,
+                Issued_on TEXT NOT NULL,
+                FOREIGN KEY (Username) REFERENCES Users (Username) ON UPDATE CASCADE ON DELETE CASCADE
+                );""")
+
+            self.Cur.execute(
+                "SELECT * FROM Warnings WHERE Username = ?", (self.Username,))
+
+            try:
+                self.Warnings_list = self.Cur.fetchall()
+                self.Warnings_num = len(self.Warnings_list)
+            except IndexError:
+                self.Warnings_list = []
+                self.Warnings_num = 0
+
         self.tb = tkinter_basics.Basics(Username=self.Username)
+
+        if self.Warnings_num >= 3:
+            print("Account deactivated")
+            return
 
         self.Menu_fr = self.tb.AddFrame(self.Main_fr, Row=0, Column=0)
         self.Menu_fr.grid(row=0, column=0, sticky="nsew", padx=0, pady=0)
@@ -61,6 +83,10 @@ class LoginMenu:
 
         self.Space_lbl = self.tb.AddLabel_spacer(
             self.Menu_fr, Row=1, Column=0, CSpan=2)
+
+        if self.Warnings_num != 0:
+            self.Space_lbl.config(
+                text="You have {} warings!".format(self.Warnings_num))
 
         self.Tools_btn = self.tb.AddButton(
             self.Menu_fr, "Tools", Row=2, Column=0, CSpan=2)
